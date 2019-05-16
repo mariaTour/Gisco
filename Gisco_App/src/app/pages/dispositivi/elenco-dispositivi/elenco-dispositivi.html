@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Dispositivi</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="rounded-generic-card">
+    <ion-card-header class="generic-card-header blue-header">Elenco Dispositivi</ion-card-header>
+    <ion-card-content class="yellow-header">
+      <ion-searchbar placeholder="campo libero" (ionInput)="getDispositivi($event)"></ion-searchbar>
+      <ion-item>
+        <ion-label>Tipologia</ion-label>
+        <ion-select [(ngModel)]="tipologiaSelezionata" (ionChange)="getDispositivi()">
+          <ion-option *ngFor="let tipologia of listaTipologie" [value]="tipologia">
+            {{tipologia.tab_tipo_dispositivo_desc}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Provincia</ion-label>
+        <ion-select [(ngModel)]="provinciaSelezionata" (ionChange)="getDispositivi()">
+          <ion-option *ngFor="let provincia of listaProvince" [value]="provincia">{{provincia.Descrizione}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let dispositivo of listaDispositivi" (click)="goToDetails($event, dispositivo)">
+          {{dispositivo.az_codice_interno}}
+          {{dispositivo.az_ragione_sociale}}
+          {{dispositivo.dis_titolo}}
+          {{dispositivo.tab_tipo_dispositivo_desc}}
+          {{dispositivo.attivita_situazione.att_scadute}}
+          {{dispositivo.attivita_situazione.att_prossime}}
+          {{dispositivo.attivita_situazione.att_future}}
+          stato
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

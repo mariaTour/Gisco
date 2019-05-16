@@ -1,0 +1,158 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons left>
+      <button (click)="back()" ion-button icon-left clear>
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <div class="icon-section">
+        <i [ngClass]="icon" [ngStyle]="{'color' : color }"></i>
+      </div>
+    </ion-buttons>
+    <ion-title>Osservazione</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding *ngIf="selectedOsservazione">
+    <ion-segment [(ngModel)]="whichPage">
+      <ion-segment-button value="Osservazione" checked (ionSelect)="segmentOsservazioneClicked($event)">
+        <ion-label>Osservazione</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Assegnazioni" (ionSelect)="segmentAssegnazioniClicked($event)">
+        <ion-label>Assegnazioni</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Immagini" (ionSelect)="segmentImmaginiClicked($event)">
+        <ion-label>Immagini</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="whichPage">
+    <ion-list *ngSwitchCase="'Osservazione'">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <ion-item>
+            <ion-label>Sito</ion-label>
+            <ionic-selectable item-content [(ngModel)]="sitoSelezionato" [items]="listaSiti" disabled="{{conclusa}}"
+              itemTextField="azCodiceRagione" [canSearch]="true" (onSearch)="sitoChange($event)">
+            </ionic-selectable>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tipologia</ion-label>
+            <ion-select [(ngModel)]="tipologiaOssSelezionata" (ionChange)="tipologiaChanged()" disabled="{{conclusa}}">
+              <ion-option *ngFor="let tipologiaOss of listaTipologieOss" [value]="tipologiaOss">
+                {{tipologiaOss.tab_tipo_scadenza_desc}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Osservazione</ion-label>
+            <ion-input [(ngModel)]="titolo" placeholder="campo obbligatorio" disabled="{{conclusa}}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Relativa ad un dispositivo</ion-label>
+            <ion-toggle false [(ngModel)]="relativo" disabled="{{conclusa}}"></ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="relativo">
+            <ion-label>tipologia dispositivo </ion-label>
+            <ion-select [(ngModel)]="tipologiaDispSelezionata" (ionChange)="setTipologiaDispositivo()"
+              disabled="{{conclusa}}">
+              <ion-option *ngFor="let tipologiaDisp of listaTipologieDisp" [value]="tipologiaDisp">
+                {{tipologiaDisp.tab_tipo_dispositivo_desc}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="tipologiaDispSelezionata && relativo">
+            <ion-label>dispositivo</ion-label>
+            <ion-select [(ngModel)]="dispositivoSelezionato" disabled="{{conclusa}}">
+              <ion-option *ngFor="let disp of listaDispositivi" [value]="disp">
+                {{disp.dis_titolo}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Descrizione</ion-label>
+            <ion-textarea [(ngModel)]="descrizione" placeholder="" disabled="{{conclusa}}"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label>Data rilevazione</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="dataRilevazione" disabled="{{conclusa}}">
+            </ion-datetime>
+          </ion-item>
+
+          <ion-item-group *ngFor="let pers of listaPersonalizzate">
+            <ion-item *ngIf="pers.ta_tipologia==='T'">
+              <ion-label>{{pers.ta_proprieta}}</ion-label>
+              <ion-input disabled="{{conclusa}}" value="{{pers.attivita_valori.ta_valore_t}}"
+                (ionChange)="valoreTChanged($event, pers.tipo_attivita_proprieta_key)"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="pers.ta_tipologia==='D'">
+              <ion-label>{{pers.ta_proprieta}} </ion-label>
+              <ion-datetime disabled="{{conclusa}}" [(ngModel)]="pers.attivita_valori.ta_valore_d"
+                (ionChange)="valoreDChanged($event, pers.tipo_attivita_proprieta_key)"></ion-datetime>
+            </ion-item>
+            <ion-item *ngIf="pers.ta_tipologia==='N'">
+              <ion-label>{{pers.ta_proprieta}}</ion-label>
+              <ion-input type="number" disabled="{{conclusa}}" value="{{pers.attivita_valori.ta_valore_n}}"
+                (ionChange)="valoreNChanged($event, pers.tipo_attivita_proprieta_key)"></ion-input>
+            </ion-item>
+
+            <ion-item *ngIf="pers.ta_tipologia==='O'">
+              <ion-label>{{pers.ta_proprieta}}</ion-label>
+              <ion-toggle disabled="{{conclusa}}" [checked]="pers.c_valori[0].ta_selected ==='S'"
+                (ionChange)="valoreOChanged($event, pers.tipo_attivita_proprieta_key)"></ion-toggle>
+            </ion-item>
+
+            <ion-item *ngIf="pers.ta_tipologia==='S'">
+              <ion-label>{{pers.ta_proprieta}}</ion-label>
+              <ion-select [(ngModel)]="valoreSKey" disabled="{{conclusa}}" (ionChange)="valoreSChanged(pers.c_valori)">
+                <ion-option *ngFor="let valoreS of pers.c_valori" [value]="valoreS.tipo_attivita_proprieta_valori_key"
+                  [selected]="valoreS.ta_selected ==='S'">
+                  {{valoreS.ta_testo}}</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item-group *ngIf="pers.ta_tipologia==='M'">
+              <ion-label>{{pers.ta_proprieta}}</ion-label>
+              <ion-list>
+                <ion-item *ngFor="let valoreM of pers.c_valori">
+                  <ion-label>{{valoreM.ta_testo}}</ion-label>
+                  <ion-checkbox slot="end" disabled="{{conclusa}}" [checked]="valoreM.ta_selected ==='S'"
+                    (ionChange)="valoreMChanged(valoreM.tipo_attivita_proprieta_valori_key, pers.tipo_attivita_proprieta_key)">
+                  </ion-checkbox>
+                </ion-item>
+              </ion-list>
+            </ion-item-group>
+          </ion-item-group>
+
+          <button ion-button *ngIf="!conclusa" block outline (click)="salvaOsservazione()">Salva</button>
+          <button ion-button *ngIf="selectedOsservazione" block outline (click)="chiudiOsservazione()">Chiusura</button>
+          <button ion-button *ngIf="selectedOsservazione && !conclusa" block outline
+            (click)="goToEliminaOsservazione()">Elimina</button>
+        </ul>
+      </div>
+    </ion-list>
+    <ion-list *ngSwitchCase="'Assegnazioni'">
+      <button ion-button *ngIf="selectedOsservazione" (click)="goToNuovaAssegnazione()">Nuova Assegnazione</button>
+      <ion-item *ngFor="let assegnazione of listaAssegnazioni">
+        <ion-row>
+          <button ion-button (click)="goToEliminaAssegnazione(assegnazione)">Elimina</button>
+          <span ion-text>
+            nominativo {{assegnazione.dp_cognome}} {{assegnazione.dp_nome}}
+            ruolo aziendale {{assegnazione.tab_ruolo_aziendale_desc}}
+            responsabile {{(assegnazione.att_dip_scelta==="S" ? "Sì" : "No")}}
+          </span>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchCase="'Immagini'">
+      <button ion-button *ngIf="selectedOsservazione && !conclusa" (click)="presentImmagineActionSheet()">Nuova
+        Immagine</button>
+      <ion-item *ngFor="let imm of listaImmagini">
+        <ion-row>
+          <button *ngIf="!conclusa" ion-button (click)="goToEliminaImmagine(imm)">Elimina</button>
+          <img src="{{imm.img_url+imm.img_file}}">
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

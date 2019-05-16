@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Osservazioni</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card class="rounded-generic-card">
+        <ion-card-header class="generic-card-header blue-header">ELENCO Osservazioni</ion-card-header>
+        <button ion-button (click)="goToNuovaOsservazione()">Nuova Osservazione</button>
+        <ion-card-content class="yellow-header">
+            <ion-searchbar placeholder="Sito" (ionInput)="setSitoFiltro($event)"></ion-searchbar>
+            <ion-item>
+                <ion-label>Tipologia</ion-label>
+                <ion-select [(ngModel)]="tipologiaSelezionata" (ionChange)="setTipologiaFiltro()">
+                    <ion-option *ngFor="let tipologia of listaTipologie" [value]="tipologia">
+                        {{tipologia.tab_tipo_scadenza_desc}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-list>
+                <ion-item *ngFor="let osservazione of listaOsservazioni" (click)="goToDetails(osservazione)">
+                    <!-- <ion-label>{{osservazione.attivita_key}}</ion-label> -->
+                    <ion-label>Sito {{osservazione.az_codice_interno}} {{osservazione.az_ragione_sociale}}</ion-label>
+                    <ion-label>Osservazione {{osservazione.att_titolo}}</ion-label>
+                    <ion-label>Tipologia {{osservazione.tab_tipo_scadenza_desc}}</ion-label>
+                    <ion-label>Data rilevazione {{osservazione.data_segnalazione}}</ion-label>
+                    <ion-label>Stato {{(osservazione.att_conclusa==='S'?"conclusa":"non conclusa")}}</ion-label>
+                    <ion-label>N.C.
+                        {{(osservazione.num_non_conformita_ris+osservazione.num_non_conformita_nonris===osservazione.num_non_conformita_chiuse ? "verde" : "rossa "+osservazione.num_non_conformita_nonris)}}
+                    </ion-label>
+                    <ion-label>dispositivo {{osservazione.att_dispositivo_key}}</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles"
+        loadingText="Caricamento Osservazioni...">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Siti</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card class="rounded-generic-card">
+        <ion-card-header class="generic-card-header blue-header">ELENCO SITI</ion-card-header>
+        <ion-card-content class="yellow-header">
+            <ion-searchbar placeholder="campo libero" (ionInput)="getSiti($event)"></ion-searchbar>
+            <ion-item>
+                <ion-label>Tipologia</ion-label>
+                <ion-select [(ngModel)]="tipologiaSelezionata" (ionChange)="getSiti()">
+                    <ion-option *ngFor="let tipologia of listaTipologie" [value]="tipologia">
+                        {{tipologia.tab_tipologia_sito_desc}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Provincia</ion-label>
+                <ion-select [(ngModel)]="provinciaSelezionata" (ionChange)="getSiti()">
+                    <ion-option *ngFor="let provincia of listaProvince" [value]="provincia">{{provincia.Descrizione}}
+                    </ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-list>
+                <ion-item *ngFor="let sito of listaSiti" (click)="goToDetails($event, sito)">
+                    <ion-label>codice {{sito.az_codice_interno}}</ion-label>
+                    <ion-label>titolo {{sito.az_ragione_sociale}}</ion-label>
+                    <ion-label>Tipologia {{sito.tab_tipologia_sito_desc}}</ion-label>
+                    <ion-label>Indirizzo {{sito.indirizzo_completo}}</ion-label>
+                    <ion-label>Cliente {{sito.gr_ragione_sociale}}</ion-label>
+                    <ion-label *ngIf="sito.prescrizioni_count>0">icona {{sito.prescrizioni_count}}</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
