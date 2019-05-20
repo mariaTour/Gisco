@@ -76,6 +76,7 @@
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-camera": {}
     },
+    
     "platforms": [
       "android",
       "ios"
