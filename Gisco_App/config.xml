@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
+<widget id="com.marte5.giscoapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Gisco</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
@@ -102,4 +102,6 @@
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDrd2GNepJWvtn9m3YlSFIv53Nz_X-9dQ4" />
+    <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyCALyK47FqTVkxLmQ35L_tVuWfV10Sq72E" />
 </widget>

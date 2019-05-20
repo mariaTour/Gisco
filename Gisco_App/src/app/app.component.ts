@@ -51,7 +51,7 @@ export class MyApp {
       { title: 'Messaggi', component: ElencoMessaggiPage },
       { title: 'Procedimenti', component: ElencoProcedimentiPage },
       { title: 'Osservazioni', component: ElencoOsservazioniPage },
-      { title: 'Attivita', component: ElencoAttivitaPage },
+      { title: 'Attività', component: ElencoAttivitaPage },
       { title: 'Profilo', component: DashboardProfiloPage },
     ];
   }

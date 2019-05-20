@@ -156,7 +156,7 @@ import { AttivitaService } from './services/attivita/attivita.service';
     AgmCoreModule.forRoot({
       // please get your own API key here:
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
-      apiKey: 'AIzaSyDXmAb965Z5_cWPc5btA8CXwzDzSvhwROk'
+      apiKey: 'AIzaSyBdH99WPCCNOhcDXI_kAwmn93FuNfA_Nh8'
     })
   ],
   bootstrap: [IonicApp],
