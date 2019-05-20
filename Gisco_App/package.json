@@ -30,7 +30,6 @@
     "@ionic-native/status-bar": "4.6.0",
     "@ionic/storage": "^2.2.0",
     "chart.js": "^2.8.0",
-    "cordova-android": "7.0.0",
     "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "4.0.1",
@@ -66,8 +65,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-sqlite-storage": {},
       "cordova-plugin-googlemaps": {
-        "API_KEY_FOR_ANDROID": "AIzaSyDXmAb965Z5_cWPc5btA8CXwzDzSvhwROk",
-        "API_KEY_FOR_IOS": "AIzaSyDXmAb965Z5_cWPc5btA8CXwzDzSvhwROk"
+        "API_KEY_FOR_ANDROID": "AIzaSyDrd2GNepJWvtn9m3YlSFIv53Nz_X-9dQ4",
+        "API_KEY_FOR_IOS": "AIzaSyCALyK47FqTVkxLmQ35L_tVuWfV10Sq72E"
       },
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "La tua posizione verrà usata per ottenere i risultati di ricerca dei siti nelle vicinanze."
@@ -75,8 +74,6 @@
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-camera": {}
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   }
 }
