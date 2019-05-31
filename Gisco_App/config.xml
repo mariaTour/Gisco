@@ -104,4 +104,6 @@
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDrd2GNepJWvtn9m3YlSFIv53Nz_X-9dQ4" />
     <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyCALyK47FqTVkxLmQ35L_tVuWfV10Sq72E" />
+    <engine name="android" spec="7.0.0" />
+    <engine name="ios" spec="~4.5.5" />
 </widget>
