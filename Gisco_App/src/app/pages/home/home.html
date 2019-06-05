@@ -6,10 +6,14 @@
 		<ion-title>Home</ion-title>
 	</ion-navbar>
 </ion-header>
+<button ion-button (click)="goToNuovaOsservazione()">Nuova Osservazione</button>
 <ion-content>
-	<ion-card class="rounded-generic-card">
-			<button ion-button (click)="goToNuovaOsservazione()">Nuova Osservazione</button>
-		<ion-card-header class="generic-card-header blue-header">Doughnut Chart</ion-card-header>
+	<ion-card class="">
+		<ion-card-header class="">
+			<ion-card-title>
+				Doughnut Chart
+			</ion-card-title>
+		</ion-card-header>
 		<ion-card-content class="yellow-header">
 			<canvas #doughnutCanvas></canvas>
 		</ion-card-content>
