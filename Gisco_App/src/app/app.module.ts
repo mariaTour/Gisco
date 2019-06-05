@@ -107,6 +107,7 @@ import { ElencoAttivitaModule } from './modules/attivita/elencoAttivita/elencoAt
 import { DashboardAttivitaModule } from './modules/attivita/dashboardAttivita/dashboardAttivita.module';
 import { DashboardAttivitaPage } from './pages/attivita/dashboard-attivita/dashboard-attivita';
 import { AttivitaService } from './services/attivita/attivita.service';
+import { Firebase } from '@ionic-native/firebase';
 
 
 @NgModule({
@@ -217,6 +218,7 @@ import { AttivitaService } from './services/attivita/attivita.service';
     OsservazioniService,
     AttivitaService,
     DatePicker,
+    Firebase,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ],
   exports: [
