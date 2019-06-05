@@ -18,13 +18,13 @@
   <div padding *ngIf="selectedOsservazione">
     <ion-segment [(ngModel)]="whichPage">
       <ion-segment-button value="Osservazione" checked (ionSelect)="segmentOsservazioneClicked($event)">
-        <ion-label>Osservazione</ion-label>
+        Osservazione
       </ion-segment-button>
       <ion-segment-button value="Assegnazioni" (ionSelect)="segmentAssegnazioniClicked($event)">
-        <ion-label>Assegnazioni</ion-label>
+        Assegnazioni
       </ion-segment-button>
       <ion-segment-button value="Immagini" (ionSelect)="segmentImmaginiClicked($event)">
-        <ion-label>Immagini</ion-label>
+        Immagini
       </ion-segment-button>
     </ion-segment>
   </div>
@@ -118,6 +118,7 @@
       <button ion-button *ngIf="selectedOsservazione" block outline (click)="chiudiOsservazione()">Chiusura</button>
       <button ion-button *ngIf="selectedOsservazione && !conclusa" block outline (click)="goToEliminaOsservazione()">Elimina</button>
     </ion-list>
+
     <ion-list *ngSwitchCase="'Assegnazioni'">
       <button ion-button *ngIf="selectedOsservazione" (click)="goToNuovaAssegnazione()">Nuova Assegnazione</button>
       <ion-item *ngFor="let assegnazione of listaAssegnazioni">
@@ -131,6 +132,7 @@
         </ion-row>
       </ion-item>
     </ion-list>
+
     <ion-list *ngSwitchCase="'Immagini'">
       <button ion-button *ngIf="selectedOsservazione && !conclusa" (click)="presentImmagineActionSheet()">Nuova
         Immagine</button>
