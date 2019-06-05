@@ -62,19 +62,28 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      console.log("PIPPO" );
-        this.firebase.getToken()
-        .then(
-          token => console.log(`PIPPO The token is ${token}`)
-
-          ) // save the token server-side and use it to push notifications to this device
-        .catch(error => console.error('Error getting token', error));
+      console.log("PIPPO");
+    //  console.log(this.platform.platforms());
+      if (!this.platform.is('mobileweb')) {//serve per testare con ionic serve -l, prima di release va cancellato
+        if (this.platform.is('ios')) {
+          this.firebase.grantPermission()
+            .then(() => {
+              this.firebase.getToken().then(token => console.log(`PIPPO The token is ${token}`)) // save the token server-side and use it to push notifications to this device
+                .catch(error => console.error('Error getting token', error));
+            });
+        } else {
+          this.firebase.getToken().then(token => console.log(`PIPPO The token is ${token}`)) // save the token server-side and use it to push notifications to this device
+            .catch(error => console.error('Error getting token', error));
+        }
+        if (this.platform.is('ios') || this.platform.is('android')) {
+          this.firebase.onNotificationOpen()
+            .subscribe(data => console.log(`User opened a notification ${data}`));
+        }
+      }
+      /*
+     this.firebase.onTokenRefresh()
+       .subscribe((token: string) => console.log(`Got a new token ${token}`));*/
     });
-  /*  this.firebase.onNotificationOpen()
-   .subscribe(data => console.log(`User opened a notification ${data}`));
-
-this.firebase.onTokenRefresh()
-  .subscribe((token: string) => console.log(`Got a new token ${token}`));*/
   }
 
   openPage(page) {
@@ -83,16 +92,16 @@ this.firebase.onTokenRefresh()
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
   }
-/*
-  public showMenu(): boolean {
-    let view = this.nav.getActive();
-    if (view) {
-      return this.pagineSenzaMenu.indexOf(view.name) === -1;
-    } else
-      return false;
-  };*/
+  /*
+    public showMenu(): boolean {
+      let view = this.nav.getActive();
+      if (view) {
+        return this.pagineSenzaMenu.indexOf(view.name) === -1;
+      } else
+        return false;
+    };*/
 
-  public logOut(){
+  public logOut() {
     this.storage.clear();
     this.menu.close();
     this.nav.setRoot(LoginPage);
