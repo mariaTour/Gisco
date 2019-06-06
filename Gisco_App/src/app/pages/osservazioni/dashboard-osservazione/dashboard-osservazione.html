@@ -14,7 +14,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-list>
   <div padding *ngIf="selectedOsservazione">
     <ion-segment [(ngModel)]="whichPage">
       <ion-segment-button value="Osservazione" checked (ionSelect)="segmentOsservazioneClicked($event)">
@@ -142,4 +142,4 @@
       </ion-item>
     </ion-list>
   </div>
-</ion-content>
+</ion-list>
