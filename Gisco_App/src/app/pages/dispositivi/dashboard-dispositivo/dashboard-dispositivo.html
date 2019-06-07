@@ -37,19 +37,19 @@
   <div padding>
     <ion-segment [(ngModel)]="whichPage">
       <ion-segment-button value="Dispositivo" checked (ionSelect)="segmentDispositivoClicked($event)">
-        <ion-label>Dispositivo</ion-label>
+        Dispositivo
       </ion-segment-button>
       <ion-segment-button value="Titolarità" (ionSelect)="segmentTitolaritaClicked($event)">
-        <ion-label>Titolarità</ion-label>
+        Titolarità
       </ion-segment-button>
       <ion-segment-button value="Autorizzazioni" (ionSelect)="segmentAutorizzazioniClicked($event)">
-        <ion-label>Autorizzazioni</ion-label>
+        Autorizzazioni
       </ion-segment-button>
       <ion-segment-button value="Mappa" (ionSelect)="segmentMappaClicked($event)">
-        <ion-label>Mappa</ion-label>
+        Mappa
       </ion-segment-button>
       <ion-segment-button value="Immagini" (ionSelect)="segmentImmaginiClicked($event)">
-        <ion-label>Immagini</ion-label>
+        Immagini
       </ion-segment-button>
     </ion-segment>
   </div>
@@ -57,14 +57,18 @@
   <div *ngIf="selectedDispositivo" [ngSwitch]="whichPage">
     <ion-list *ngSwitchCase="'Dispositivo'">
       <ion-item>
-          <ion-label> codice {{selectedDispositivo.az_codice_interno}}</ion-label>
-          <ion-label>  Sito {{selectedDispositivo.az_ragione_sociale}}</ion-label>
-          <ion-label> Dispositivo {{selectedDispositivo.dis_titolo}}</ion-label>
-          <ion-label> Tipologia {{selectedDispositivo.tab_tipo_dispositivo_desc}}</ion-label>
-          <ion-label> Gestore {{selectedDispositivo.dis_gestore_desc}}</ion-label>
-          <ion-label> Data attivazione {{selectedDispositivo.dis_data_attivazione}}</ion-label>
-          <ion-label> Data disattivazione {{selectedDispositivo.dis_data_disattivazione}}</ion-label>
-          <ion-label> Note {{selectedDispositivo.dis_descrizione}}</ion-label>
+        <h3>
+          {{selectedDispositivo.dis_titolo}}
+        </h3>
+        <p>
+          Codice {{selectedDispositivo.az_codice_interno}}<br>
+          Sito{{selectedDispositivo.az_ragione_sociale}}<br>
+          Tipologia{{selectedDispositivo.tab_tipo_dispositivo_desc}}<br>
+          Gestore {{selectedDispositivo.dis_gestore_desc}}
+          Data attivazione {{selectedDispositivo.dis_data_attivazione}}<br>
+          Data disattivazione {{selectedDispositivo.dis_data_disattivazione}}<br>
+          Note {{selectedDispositivo.dis_descrizione}}<br>
+        </p>
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchCase="'Titolarità'">
