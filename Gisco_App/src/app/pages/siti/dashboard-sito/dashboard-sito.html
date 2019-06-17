@@ -21,69 +21,85 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
   <div padding>
     <ion-segment [(ngModel)]="whichPage">
       <ion-segment-button value="Sito" checked (ionSelect)="segmentSitoClicked($event)">
-        <ion-label>Sito</ion-label>
+      <ion-icon name="locate"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="Catastale" (ionSelect)="segmentCatastaleClicked($event)">
-        <ion-label>Catastale</ion-label>
+        <ion-icon name="albums"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="Procedimenti" (ionSelect)="segmentProcedimentiClicked($event)">
-        <ion-label>Procedimenti</ion-label>
+        <ion-icon name="list"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="Grafico" (ionSelect)="segmentGraficoClicked($event)">
-        <ion-label>Grafico torta</ion-label>
+        <ion-icon name="pie"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="Mappa" (ionSelect)="segmentMappaClicked($event)">
-        <ion-label>Mappa</ion-label>
+        <ion-icon name="pin"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="Immagini" (ionSelect)="segmentImmaginiClicked($event)">
-        <ion-label>Immagini</ion-label>
+        <ion-icon name="images"></ion-icon>
       </ion-segment-button>
     </ion-segment>
   </div>
 
   <div [ngSwitch]="whichPage">
+
     <ion-list *ngSwitchCase="'Sito'">
       <ion-item>
-        <h3 text-center *ngIf="selectedSito">
-          <p>codice {{selectedSito.az_codice_interno}}</p>
-          <p>titolo {{selectedSito.az_ragione_sociale}}</p>
-          <p>Indirizzo {{selectedSito.indirizzo_completo}}</p>
-          <p>cliente {{selectedSito.gruppo_desc}}</p>
-          <p>estensione {{selectedSito.az_estensione}}</p>
-          <p>note {{selectedSito.az_note}}</p>
-          <p>responsabile {{selectedSito.az_responsabile_desc}}</p>
-        </h3>
+        <ion-label>Sito</ion-label>
       </ion-item>
+      <div *ngIf="selectedSito">
+        <ion-item><p>Codice </p><ion-note item-end><p>{{selectedSito.az_codice_interno}}</p></ion-note></ion-item>
+        <ion-item><p>Titolo </p><ion-note item-end><p>{{selectedSito.az_ragione_sociale}}</p></ion-note></ion-item>
+        <ion-item><p>Indirizzo </p><ion-note item-end><p>{{selectedSito.indirizzo_completo}}</p></ion-note></ion-item>
+        <ion-item><p>Cliente </p><ion-note item-end><p>{{selectedSito.gruppo_desc}}</p></ion-note></ion-item>
+        <ion-item><p>Estensione </p><ion-note item-end><p>{{selectedSito.az_estensione}}</p></ion-note></ion-item>
+        <ion-item><p>Note</p><ion-note item-end><p>{{selectedSito.az_note}}</p></ion-note></ion-item>
+        <ion-item><p>Responsabile</p><ion-note item-end><p>{{selectedSito.az_responsabile_desc}}</p></ion-note></ion-item>
+      </div>
     </ion-list>
+
     <ion-list *ngSwitchCase="'Catastale'">
-      <ion-item *ngFor="let c of catastale">
-        Settore {{c.azc_settore}}
-        Descrizione {{c.azc_desc}}
-        Tipo proprietà {{c.tab_tipo_proprieta_desc}}
-        Stato proprietà {{c.tab_stato_proprieta_desc}}
+      <ion-item>
+        <ion-label>Catastale</ion-label>
       </ion-item>
+      <div *ngFor="let c of catastale">
+        <ion-item><p>Settore </p><ion-note item-end><p>{{c.azc_settore}}</p></ion-note></ion-item>
+        <ion-item><p>Descrizione </p><ion-note item-end><p>{{c.azc_desc}}</p></ion-note></ion-item>
+        <ion-item><p>Tipo proprietà </p><ion-note item-end><p>{{c.tab_tipo_proprieta_desc}}</p></ion-note></ion-item>
+        <ion-item><p>Stato proprietà </p><ion-note item-end><p>{{c.tab_stato_proprieta_desc}}</p></ion-note></ion-item>
+      </div>
     </ion-list>
+
     <ion-list *ngSwitchCase="'Procedimenti'">
-      <ion-item *ngFor="let procedimento of procedimenti">
-        Nome procedimento {{procedimento.pro_titolo}}
-        Tipo {{procedimento.tab_tipo_procedimento_desc}}
-        Icona tonda rossa alert prescrizioni scadute con numero {{procedimento.pr_scadute}}
-        Icona tonda gialla orologio prescrizioni In scadenza con numero {{procedimento.pr_in_scadenza}}
-        Icona tonda celeste info prescrizioni future con numero {{procedimento.pr_prossime}}
-        Icona tonda arancione interrogativo prescrizioni senza data con numero {{procedimento.pr_senza_data}}
-        Icona tonda verde spunta prescrizioni ottemperate con numero {{procedimento.pr_ottemperate}}
+      <ion-item>
+        <ion-label>Procedimenti</ion-label>
       </ion-item>
+      <div *ngFor="let procedimento of procedimenti">
+        <ion-item><p>Nome procedimento </p><ion-note item-end><p>{{procedimento.pro_titolo}}</p></ion-note></ion-item>
+        <ion-item><p>Tipo </p><ion-note item-end><p>{{xxx}}</p></ion-note></ion-item>
+        <ion-item><p>Icona tonda rossa alert prescrizioni scadute con numero </p><ion-note item-end><p>{{procedimento.pr_scadute}}</p></ion-note></ion-item>
+        <ion-item><p>Icona tonda gialla orologio prescrizioni In scadenza con numero </p><ion-note item-end><p>{{procedimento.pr_in_scadenza}}</p></ion-note></ion-item>
+        <ion-item><p>Icona tonda celeste info prescrizioni future con numero </p><ion-note item-end><p>{{procedimento.pr_prossime}}</p></ion-note></ion-item>
+        <ion-item><p>Icona tonda arancione interrogativo prescrizioni senza data con numero </p><ion-note item-end><p>{{procedimento.pr_senza_data}}</p></ion-note></ion-item>
+        <ion-item><p>Icona tonda verde spunta prescrizioni ottemperate con numero </p><ion-note item-end><p>{{procedimento.pr_ottemperate}}</p></ion-note></ion-item>
+      </div>
     </ion-list>
-    <ion-list *ngSwitchCase="'Grafico torta'">
+    <ion-list *ngSwitchCase="'Grafico'">
+      <ion-item>
+        <ion-label>Grafico Torta</ion-label>
+      </ion-item>
       <ion-item>
         pluto
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchCase="'Mappa'">
+      <ion-item>
+        <ion-label>Mappa</ion-label>
+      </ion-item>
       <ion-item>
           <map-component [mapModel]="mapModel" *ngIf="showMap" (onMarkerClicked)="markerClicked($event)" ></map-component>
       </ion-item>
