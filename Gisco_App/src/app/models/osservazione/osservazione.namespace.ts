@@ -25,6 +25,7 @@ export namespace Osservazione {
         public num_non_conformita_chiuse: number;
         public num_non_conformita_nonris: number;
         public num_non_conformita_ris: number;
+        public att_protocollo: string;
     }
 
     export class Assegnazione {

@@ -15,13 +15,14 @@ export class OsservazioniService {
     constructor(private httpService: HttpService) {
     }
 
-    public getListaOsservazioni(token: string, tipo_cod: any, sito_cod: string, from: number, to: number): Observable<Http.HttpResponse> {
+    public getListaOsservazioni(token: string, tipo_cod: any, sito_cod: string, prot_cod: string, from: number, to: number): Observable<Http.HttpResponse> {
         return this.httpService.get(GlobalVariable.BASE_API_URL + GlobalVariable.OSSERVAZIONI_GET_ELENCO_KEYWORD
             + GlobalVariable.URL_SEPARATOR + GlobalVariable.URL_TOKEN_PLACEHOLDER
             + GlobalVariable.URL_SEPARATOR + from
             + GlobalVariable.URL_SEPARATOR + to
             + GlobalVariable.URL_SEPARATOR + tipo_cod //tipo
-            + GlobalVariable.URL_SEPARATOR + sito_cod, token);//sito
+            + GlobalVariable.URL_SEPARATOR + sito_cod //sito
+            + GlobalVariable.URL_SEPARATOR + prot_cod, token);
     }
 
     public getOsservazione(key: number, token: string): Observable<Http.HttpResponse> {

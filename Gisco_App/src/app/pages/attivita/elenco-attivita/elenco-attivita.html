@@ -11,6 +11,7 @@
         <ion-card-header class="generic-card-header blue-header">ELENCO Attività</ion-card-header>
         <ion-card-content class="yellow-header">
             <ion-searchbar placeholder="Sito" (ionInput)="setSitoFiltro($event)"></ion-searchbar>
+            <ion-searchbar placeholder="Protocollo" (ionInput)="setProtocolloFiltro($event)"></ion-searchbar>
             <ion-item>
                 <ion-label>Categoria</ion-label>
                 <ion-select [(ngModel)]="categoriaSelezionata" (ionChange)="setCategoriaFiltro()">
@@ -33,6 +34,7 @@
                     <ion-label>Data scadenza {{attivita.att_data_scadenza}}</ion-label>
                     <ion-label>Stato {{(attivita.att_conclusa==='S'?"conclusa":"non conclusa")}}</ion-label>
                     <ion-label>dispositivo {{attivita.att_dispositivo_key}}</ion-label>
+                    <ion-label> {{attivita.att_protocollo}}</ion-label>
                 </ion-item>
             </ion-list>
         </ion-card-content>
