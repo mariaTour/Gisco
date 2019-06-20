@@ -20,18 +20,33 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
-  <p>Codice sito {{selectedDocumento.az_codice_interno}}</p>
-  <p>Sito {{selectedDocumento.az_ragione_sociale}}</p>
-  <p>Codice documento {{selectedDocumento.doc_codice}}</p>
-  <p>Titolo {{selectedDocumento.doc_titolo}}</p>
-  <p>Descrizione {{selectedDocumento.doc_descrizione}}</p>
-  <p>Tipologia {{selectedDocumento.tab_tipo_documento_desc}}</p>
-  <p>Versione {{selectedDocumento.doc_versione}}</p>
-  <p>Cartella {{selectedDocumento.ultima_rev.doc_userfolder  }}</p>
-  <p>Data scadenza {{selectedDocumento.doc_data_scadenza}}</p>
-  <p>Link {{selectedDocumento.doc_url}}</p>
-  <button ion-button (click)="openUrl()">Scarica File</button>
-
+<ion-content>
+    <ion-card>
+        <ion-card-header padding>
+            {{selectedDocumento.doc_titolo}}
+        </ion-card-header>
+        <ion-card-content padding>
+            <h3>Codice </h3><p>{{selectedDocumento.az_codice_interno}}</p>
+            <hr>
+            <h3>Sito </h3><p>{{selectedDocumento.az_ragione_sociale}}</p>
+            <hr>
+            <h3>Codice documento </h3><p>{{selectedDocumento.doc_codice}}</p>
+            <hr>
+            <h3>Descrizione </h3><p>{{selectedDocumento.doc_descrizione}}</p>
+            <hr>
+            <h3>Tipologia </h3><p>{{selectedDocumento.tab_tipo_documento_desc}}</p>
+            <hr>
+            <h3>Versione </h3><p>{{selectedDocumento.doc_versione}}</p>
+            <hr>
+            <h3>Cartella </h3><p>{{selectedDocumento.ultima_rev.doc_userfolder  }}</p>
+            <hr>
+            <h3>Data scadenza </h3><p>{{selectedDocumento.doc_data_scadenza}}</p>
+            <!--<p>Link </p><p><a href="{{selectedDocumento.doc_url}}">Link documento</a></p></!--<p>-->
+        </ion-card-content>
+    </ion-card>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <button ion-button small item-end icon-start (click)="openUrl()"><ion-icon name="download" ios="ios-download-outline"></ion-icon> Scarica File</button>
+    </ion-toolbar>
+</ion-footer>

@@ -7,15 +7,31 @@
 	</ion-navbar>
 </ion-header>
 <ion-content>
-	<ion-card class="">
-		<ion-card-header class="">
-			<ion-card-title>
-				Doughnut Chart
+	<ion-card >
+		<ion-card-header>
+			<ion-card-title padding>
+				Prescrizioni
 			</ion-card-title>
 		</ion-card-header>
-		<ion-card-content class="yellow-header">
-			<canvas #doughnutCanvas></canvas>
+		<ion-card-content padding>
+			<canvas #graficoPrescrizioni></canvas>
 		</ion-card-content>
 	</ion-card>
-	<button ion-button (click)="goToNuovaOsservazione()">Nuova Osservazione</button>
+	<ion-card >
+		<ion-card-header>
+			<ion-card-title padding>
+				Prescrizioni
+			</ion-card-title>
+		</ion-card-header>
+		<ion-card-content padding>
+			<canvas #graficoAttivita></canvas>
+		</ion-card-content>
+	</ion-card>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <button ion-button small item-end icon-start block (click)="goToNuovaOsservazione()">
+            <ion-icon name="add-circle" ios="ios-add-circle-outline"></ion-icon> Nuova Osservazione
+        </button>
+    </ion-toolbar>
+</ion-footer>

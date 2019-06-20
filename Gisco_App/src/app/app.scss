@@ -14,3 +14,29 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.card {
+    margin-top: 12px !important;
+}
+
+
+.menu-inner {
+    .toolbar-content, .toolbar-background {
+        background-color: $primary-darker;
+    }
+  .content {
+    background: none;
+    color: #fff;
+  }
+
+  .item {
+      border: none !important;
+    background: none;
+    .item-inner, .icon {
+        border: none !important;
+        color: #fff;
+        
+    }
+  }
+}

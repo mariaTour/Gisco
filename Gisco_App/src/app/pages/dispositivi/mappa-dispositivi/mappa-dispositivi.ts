@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
 
 import { StoreService } from '../../../services/store/store.service';
 import { DispositiviService } from '../../../services/dispositivi/dispositivi.service';
@@ -34,8 +34,11 @@ export class MappaDispositiviPage {
   public mapModel: Common.MapModel;
 
   public showMap: boolean;
+  public height = 0; // -------------- TEMPORANEO -----------------
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public platform: Platform, // -------------- TEMPORANEO -----------------
+    public navCtrl: NavController,
     public navParams: NavParams,
     public storeService: StoreService,
     public dispositiviService: DispositiviService,
@@ -48,8 +51,9 @@ export class MappaDispositiviPage {
     this.mapModel.markers = mapMarkers;
 
     this.showMap = false;
+    
   }
-
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad MappaDispositiviPage');
     let loading = this.loadingCtrl.create({
@@ -68,7 +72,7 @@ export class MappaDispositiviPage {
           this.mapModel.centerLat = 41.893056;
           this.mapModel.centerLon = 12.482778;
           this.mapModel.initialZoom = 6;
-
+          this.height = this.platform.height() - 56; // -------------- TEMPORANEO -----------------
           for (let dispositivo of this.listaDispositivi) {
             var marker = new Common.MapMarker();
 
