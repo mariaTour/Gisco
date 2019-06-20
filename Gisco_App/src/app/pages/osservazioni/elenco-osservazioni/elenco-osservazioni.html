@@ -18,6 +18,7 @@
         <ion-label>Elenco Osservazioni</ion-label>
     </ion-item>
     <ion-searchbar placeholder="Sito" (ionInput)="setSitoFiltro($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Protocollo" (ionInput)="setProtocolloFiltro($event)"></ion-searchbar>
     <ion-item>
         <ion-label>Tipologia</ion-label>
         <ion-select [(ngModel)]="tipologiaSelezionata" (ionChange)="setTipologiaFiltro()">
@@ -33,6 +34,7 @@
         <ion-item><p>Tipologia</p><ion-note item-end><p>{{osservazione.tab_tipo_scadenza_desc}}</p></ion-note></ion-item>
         <ion-item><p>Data rilevazione</p><ion-note item-end><p>{{osservazione.data_segnalazione}}</p></ion-note></ion-item>
         <ion-item><p>Stato</p><ion-note item-end><p>{{(osservazione.att_conclusa==='S'?"conclusa":"non conclusa")}}</p></ion-note></ion-item>
+        <ion-item><p>Protocollo</p><ion-note item-end><p>{{(osservazione.att_protocollo)}}</p></ion-note></ion-item>
         <ion-item><p>N.C.</p><ion-note item-end><p>{{(osservazione.num_non_conformita_ris+osservazione.num_non_conformita_nonris===osservazione.num_non_conformita_chiuse ? "verde" : "rossa "+osservazione.num_non_conformita_nonris)}}</p></ion-note></ion-item>
         <ion-item><p>Dispositivo</p><ion-note item-end><p>{{osservazione.att_dispositivo_key}}</p></ion-note></ion-item>
     </ion-list>

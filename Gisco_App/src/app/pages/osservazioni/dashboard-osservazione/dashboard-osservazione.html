@@ -43,6 +43,7 @@
             {{tipologiaOss.tab_tipo_scadenza_desc}}</ion-option>
         </ion-select>
       </ion-item>
+      <ion-item><p>Protocollo</p><ion-note item-end><p>{{(selectedOsservazione.att_protocollo)}}</p></ion-note></ion-item>
       <ion-item>
         <ion-label>Osservazione</ion-label>
         <ion-input [(ngModel)]="titolo" placeholder="campo obbligatorio" disabled="{{conclusa}}"></ion-input>

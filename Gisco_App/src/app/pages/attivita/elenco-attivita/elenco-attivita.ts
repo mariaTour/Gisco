@@ -24,6 +24,7 @@ import { DashboardAttivitaPage } from '../dashboard-attivita/dashboard-attivita'
 export class ElencoAttivitaPage {
   public listaAttivita: Array<Attivita.Attivita>;
   public campoLiberoSito: string;
+  public campoLiberoProtocollo: string;
   public numAttivita = 1;
   public numAttivitaRicevuti: number;
   public tipologiaSelezionata: Filtro.TipologiaAttivita;
@@ -40,6 +41,7 @@ export class ElencoAttivitaPage {
     this.numAttivitaRicevuti = 1;
     this.listaAttivita = new Array<Attivita.Attivita>();
     this.campoLiberoSito = "A";
+    this.campoLiberoProtocollo = "A";
   }
 
   ionViewDidLoad() {
@@ -79,7 +81,7 @@ export class ElencoAttivitaPage {
     this.storeService.getUserDataPromise().then((val: Login.ws_Token) => {
       var tokenValue = val.token_value;
       //(token: string, categoria: any, tipo_cod: any, sito_cod: string, from: number, to: number)
-      this.attivitaService.getListaAttivita(tokenValue, this.categoriaSelezionata.tab_tipo_attivita_cod, this.tipologiaSelezionata.tab_tipo_scadenza_cod, this.campoLiberoSito, this.numAttivita, this.numAttivita + 19).subscribe(r => {
+      this.attivitaService.getListaAttivita(tokenValue, this.categoriaSelezionata.tab_tipo_attivita_cod, this.tipologiaSelezionata.tab_tipo_scadenza_cod, this.campoLiberoSito, this.campoLiberoProtocollo, this.numAttivita, this.numAttivita + 19).subscribe(r => {
         console.log('getAttivita');
         if (r.ErrorMessage.msg_code === 0) {
           console.log(r.ErrorMessage.msg_code);
@@ -105,6 +107,17 @@ export class ElencoAttivitaPage {
     }
     if (this.campoLiberoSito === "") {
       this.campoLiberoSito = "A";
+    }
+    this.numAttivita = 1;
+    this.getAttivita();
+  }
+
+  public setProtocolloFiltro(event) {
+    if (event != undefined) {
+      this.campoLiberoProtocollo = event.srcElement.value;
+    }
+    if (this.campoLiberoProtocollo === "") {
+      this.campoLiberoProtocollo = "A";
     }
     this.numAttivita = 1;
     this.getAttivita();

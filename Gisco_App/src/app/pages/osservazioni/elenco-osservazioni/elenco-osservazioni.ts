@@ -24,6 +24,7 @@ import { LoginPage } from '../../login/login';
 export class ElencoOsservazioniPage {
   public listaOsservazioni: Array<Osservazione.Osservazione>;
   public campoLiberoSito: string;
+  public campoLiberoProtocollo: string;
   public numOsservazioni = 1;
   public numOsservazioniRicevuti: number;
   public tipologiaSelezionata: Filtro.TipologiaOsservazione;
@@ -38,6 +39,7 @@ export class ElencoOsservazioniPage {
     this.numOsservazioniRicevuti = 1;
     this.listaOsservazioni = new Array<Osservazione.Osservazione>();
     this.campoLiberoSito = "A";
+    this.campoLiberoProtocollo="A";
   }
 
   ionViewDidLoad() {
@@ -74,7 +76,7 @@ export class ElencoOsservazioniPage {
     }
     this.storeService.getUserDataPromise().then((val: Login.ws_Token) => {
       var tokenValue = val.token_value;
-      this.osservazioniService.getListaOsservazioni(tokenValue, this.tipologiaSelezionata.tab_tipo_scadenza_cod, this.campoLiberoSito,
+      this.osservazioniService.getListaOsservazioni(tokenValue, this.tipologiaSelezionata.tab_tipo_scadenza_cod, this.campoLiberoSito, this.campoLiberoProtocollo,
         this.numOsservazioni, this.numOsservazioni + 19).subscribe(r => {
           console.log('getOsservazioni');
           if (r.ErrorMessage.msg_code === 0) {
@@ -101,6 +103,17 @@ export class ElencoOsservazioniPage {
     }
     if (this.campoLiberoSito === "") {
       this.campoLiberoSito = "A";
+    }
+    this.numOsservazioni = 1;
+    this.getOsservazioni();
+  }
+
+  public setProtocolloFiltro(event) {
+    if (event != undefined) {
+      this.campoLiberoProtocollo = event.srcElement.value;
+    }
+    if (this.campoLiberoProtocollo === "") {
+      this.campoLiberoProtocollo = "A";
     }
     this.numOsservazioni = 1;
     this.getOsservazioni();
