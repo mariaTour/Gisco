@@ -20,23 +20,76 @@
     margin-top: 12px !important;
 }
 
-
 .menu-inner {
+    .toolbar {
+        padding: 0 !important;
+    }
     .toolbar-content, .toolbar-background {
         background-color: $primary-darker;
+        padding: 6px;
     }
-  .content {
-    background: none;
-    color: #fff;
-  }
+    .content {
+        background: none;
+        color: #fff;
+    }
 
   .item {
-      border: none !important;
-    background: none;
-    .item-inner, .icon {
         border: none !important;
-        color: #fff;
-        
+        background: none;
+        .item-inner {
+            border: none !important;
+            color:rgba(255,255,255,1);
+            font-size: .9em;
+            
+        }
+        .icon {
+            font-size: 1.2em;
+            line-height: 1.5em;
+            margin: 0 5px 0 0;
+            border: none !important;
+            color: $tertiary;
+            
+        }
     }
-  }
+}
+
+.ios, .md, .wp {
+    ion-header {
+      background-color: map-get($colors, secondary);
+    }
+    ion-footer {
+      background-color: map-get($colors, primary-lighter);
+      color: white;
+    }
+
+    ion-navbar {
+      background-color: map-get($colors, secondary);
+    }
+
+    ion-searchbar {
+      background-color: map-get($colors, primary-lighter);
+    }
+
+    .toolbar-background {
+      background-color: map-get($colors, primary-lighter);
+    }
+    .toolbar-title, .bar-button-default {
+      color: white;
+    }
+    .segment-button {
+        height: 4rem;
+        line-height: 5rem;
+        border-top: 0;
+        border-bottom: 0;
+        &:first-of-type {
+            border-radius: 0;
+            border-left: 0;
+        }
+        &:last-of-type {
+            border-radius: 0;
+            border-right: 0;
+        }
+    }
+
+
 }

@@ -65,7 +65,7 @@ export namespace Attivita {
         public inserito_il: string;
         public modificato_da: any;
         public modificato_il: string;
-        public att_protocollo: string;
+        //public att_protocollo: string;
     }
 
     export class ws_SendImage {

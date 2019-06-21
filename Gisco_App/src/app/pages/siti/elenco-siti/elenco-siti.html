@@ -27,7 +27,7 @@
     </ion-item>
     <ion-list *ngFor="let sito of listaSiti" (click)="goToDetails($event, sito)">
         <button no-lines ion-item color="light">Sito {{sito.az_ragione_sociale}}</button>
-        <ion-item><p>codice</p> <ion-note item-end><p>{{sito.az_codice_interno}}</p></ion-note></ion-item>
+        <ion-item><p>Codice</p> <ion-note item-end><p>{{sito.az_codice_interno}}</p></ion-note></ion-item>
         <ion-item><p>Tipologia</p> <ion-note item-end><p>{{sito.tab_tipologia_sito_desc}}</p></ion-note></ion-item>
         <ion-item><p>Indirizzo</p> <ion-note item-end><p>{{sito.indirizzo_completo}}</p></ion-note></ion-item>
         <ion-item><p>Cliente</p> <ion-note item-end><p>{{sito.gr_ragione_sociale}}</p></ion-note></ion-item>
