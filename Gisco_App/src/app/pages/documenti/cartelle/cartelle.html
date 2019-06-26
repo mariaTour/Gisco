@@ -14,10 +14,6 @@
 </ion-header>
 
 <ion-content>
-    <ion-item>
-        <ion-label>Elenco Cartelle</ion-label>
-    </ion-item>
-    
     <ion-grid>
         <ion-row>
             <ion-col col-4 class="icon-folder" *ngFor="let cartella of listaCartelle" (click)="goToTipologieDocumenti($event, cartella)">

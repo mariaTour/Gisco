@@ -5,28 +5,34 @@
                 <ion-icon name="arrow-back"></ion-icon>
             </button>
         </ion-buttons>
-        <ion-title>Documenti</ion-title>
+        <ion-title>Elenco Documenti</ion-title>
     </ion-navbar>
     <ion-buttons end>
         <div class="icon-section">
             <i [ngClass]="icon" [ngStyle]="{'color' : color }"></i>
         </div>
     </ion-buttons>
-</ion-header>
-<ion-content >
-    <ion-item no-lines>
-        <ion-label>Elenco Documenti</ion-label>
-    </ion-item>
     <ion-searchbar placeholder="campo libero Sito" (ionInput)="setSitoFiltro($event)"></ion-searchbar>
     <ion-searchbar placeholder="campo libero Documento" (ionInput)="setDocumentoFiltro($event)"></ion-searchbar>
-    <ion-grid>
+</ion-header>
+<ion-content >
+    <ion-list>
+        <ion-item *ngFor="let documento of listaDocumenti" (click)="goToDocumento($event, documento)" text-wrap>
+            <ion-thumbnail item-start>
+                <img src="/assets/imgs/ios-doc-icon.png">
+            </ion-thumbnail>
+            <h3>{{documento.doc_titolo}}</h3>
+            <p><small>{{documento.tab_tipo_documento_desc}}</small></p>
+        </ion-item>
+    </ion-list>
+    <!--<ion-grid>
         <ion-row>
             <ion-col col-4 class="icon-document" *ngFor="let documento of listaDocumenti" (click)="goToDocumento($event, documento)">
                 <ion-label>{{documento.doc_titolo}}</ion-label>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <!--<ion-grid>
+    <ion-grid>
         <ion-row>
             <ion-col *ngFor="let documento of listaDocumenti" (click)="goToDocumento($event, documento)">
                 <ion-label>codice sito {{documento.az_codice_interno}}</ion-label>

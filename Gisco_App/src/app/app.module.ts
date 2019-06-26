@@ -47,6 +47,7 @@ import { CartellePage } from './pages/documenti/cartelle/cartelle';
 import { ElencoDocumentiPage } from './pages/documenti/elenco-documenti/elenco-documenti';
 
 // #REGION - Components
+//import { ProgressBarComponent } from './components/progress-bar/progress-bar';
 
 // #REGION - Services
 import { HttpService } from './services/shared/http.service';

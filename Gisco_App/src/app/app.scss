@@ -25,7 +25,7 @@
         padding: 0 !important;
     }
     .toolbar-content, .toolbar-background {
-        background-color: $primary-darker;
+        background-color: $primary;
         padding: 6px;
     }
     .content {
@@ -55,7 +55,7 @@
 
 .ios, .md, .wp {
     ion-header {
-      background-color: map-get($colors, secondary);
+      //background-color: map-get($colors, secondary);
     }
     ion-footer {
       background-color: map-get($colors, primary-lighter);
@@ -63,11 +63,33 @@
     }
 
     ion-navbar {
-      background-color: map-get($colors, secondary);
+      background-color: map-get($colors, primary);
+      *{
+            color: #fff !important;
+        }
+    }
+    
+    .ion-section-title {
+        //background-color: map-get($colors, primary);
+        //color: #fff;
+        border: none !important;
+        .item-inner {
+            border: none !important;
+        }
     }
 
     ion-searchbar {
       background-color: map-get($colors, primary-lighter);
+    }
+    .ion-filters {
+      background-color: map-get($colors, primary-lighter);
+      *{
+      color: #fff !important;
+      }
+      font-size: 1em;
+        .item-inner {
+            border: none !important;
+        }
     }
 
     .toolbar-background {
@@ -92,4 +114,8 @@
     }
 
 
+}
+
+.anteprima_mess {
+    font-size: .75em;
 }

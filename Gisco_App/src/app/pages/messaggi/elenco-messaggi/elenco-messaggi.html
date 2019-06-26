@@ -5,12 +5,47 @@
         </button>
         <ion-title>Messaggi</ion-title>
     </ion-navbar>
+    <ion-searchbar (ionInput)="setMessaggiFiltro($event)"></ion-searchbar>
 </ion-header>
 <ion-content>
 
     <ion-list>
-        <ion-searchbar (ionInput)="setMessaggiFiltro($event)"></ion-searchbar>
-        <div class="card no-border card-large messaggi">
+        <ion-item-sliding *ngFor="let mess of listaMessaggi">
+            <ion-item text-wrap  (click)="goToDetails(mess)">
+                <ion-avatar item-start>
+                    <img src="{{mess.url_avatar}}">
+                </ion-avatar>
+                <h3>{{mess.cognome_mit}} {{mess.nome_mit}}</h3>
+                <p class="anteprima_mess">{{mess.soggetto}}</p>
+                <p class="anteprima_mess">{{mess.data}}</p>
+            </ion-item>
+            <ion-item-options side="left">
+                <button ion-button color="danger" (click)="deleteConfirm(mess)">
+                    <ion-icon name="trash"></ion-icon>
+                    Cestino
+                </button>
+            </ion-item-options>
+            <ion-item-options side="right">
+                <button ion-button color="secondary" *ngIf="mess.preferito==''" (click)="setStar(mess,'S')">
+                    <ion-icon name="star-outline"></ion-icon>
+                    Importante
+                </button>
+                <button ion-button color="secondary" *ngIf="mess.preferito=='N'" (click)="setStar(mess,'S')">
+                    <ion-icon name="star-outline"></ion-icon>
+                    Importante
+                </button>
+                <button ion-button color="secondary" *ngIf="mess.preferito=='S'" (click)="setStar(mess,'N')">
+                    <ion-icon name="star"></ion-icon>
+                    Importante
+                </button>
+                <button ion-button color="primary-lighter" (click)="goToDetails(mess)">
+                    <ion-icon name="eye"></ion-icon>
+                    Leggi
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+
+        <div class="card no-border card-large messaggi  hidden">
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <ion-item *ngFor="let mess of listaMessaggi" class="comm">
@@ -22,9 +57,9 @@
                                 <ion-icon name="star-outline" [ngStyle]="{'color' : color }" *ngIf="mess.preferito=='N'" (click)="setStar(mess,'S')"></ion-icon>
                                 <ion-icon name="star" [ngStyle]="{'color' : color }" *ngIf="mess.preferito=='S'" (click)="setStar(mess,'N')"></ion-icon>
                                 <ion-icon name="trash" [ngStyle]="{'color' : color }" (click)="deleteConfirm(mess)"></ion-icon>
-                                <!--<div  class="user-small contact-small">
+                                <div  class="user-small contact-small">
                   <img  src="{{mess.url_avatar}}">
-                </div>-->
+                </div>
                             </div>
                             <div class="brief" (click)="goToDetails(mess)">
                                 <h5 class="name ">{{mess.cognome_mit}} {{mess.nome_mit}}</h5>
@@ -56,7 +91,7 @@
                 Uscita
             </ion-col>
             <ion-col (click)="goToImportantiMessaggi()">
-                <ion-icon name="alert" style="font-size: 2em;"></ion-icon><br>
+                <ion-icon name="star" style="font-size: 2em;"></ion-icon><br>
                 Importanti
             </ion-col>
             <ion-col (click)="goToCestinoMessaggio()">
