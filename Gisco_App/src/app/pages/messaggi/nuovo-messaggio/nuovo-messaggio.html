@@ -27,10 +27,12 @@
     </ion-item>
 
     <ion-item>
-        <ion-input [(ngModel)]="oggetto" placeholder="Oggetto" text-left></ion-input>
+        <ion-label stacked>Oggetto</ion-label>
+        <ion-input [(ngModel)]="oggetto" text-left></ion-input>
     </ion-item>
     <ion-item>
-        <ion-textarea [(ngModel)]="messaggio" placeholder="Messaggio" text-left></ion-textarea>
+        <ion-label stacked>Messaggio</ion-label>
+        <ion-textarea [(ngModel)]="messaggio" text-left></ion-textarea>
     </ion-item>
 
 </ion-content>

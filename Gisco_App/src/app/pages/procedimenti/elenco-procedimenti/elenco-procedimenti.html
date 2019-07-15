@@ -24,7 +24,7 @@
             </button>
         </ion-item>
     </ion-list>
-    <ion-list *ngFor="let procedimento of listaProcedimenti" (click)="goToDetails($event, procedimento)">
+    <!--<ion-list *ngFor="let procedimento of listaProcedimenti" (click)="goToDetails($event, procedimento)">
         <button no-lines ion-item color="light">Sito {{procedimento.az_ragione_sociale}}</button>
         <ion-item><p>Codice Sito</p> <ion-note item-end><p>{{procedimento.az_codice_interno}}</p></ion-note></ion-item>
         <ion-item><p>Titolo procedimento</p> <ion-note item-end><p>{{procedimento.pro_titolo}}</p></ion-note></ion-item>
@@ -38,7 +38,7 @@
         <ion-item *ngIf="procedimento.pr_prossime>0"><p>Prossime</p> <ion-note item-end><p>{{procedimento.pr_prossime}}</p></ion-note></ion-item>
         <ion-item *ngIf="procedimento.comunicazioni>0"><p>Comunicazioni</p> <ion-note item-end><p>{{procedimento.comunicazioni}}</p></ion-note></ion-item>
         <ion-item><p>stato</p> <ion-note item-end><p>{{procedimento.pro_chiuso}}</p></ion-note></ion-item>
-    </ion-list>
+    </ion-list>-->
 
     <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Caricamento Procedimenti...">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>

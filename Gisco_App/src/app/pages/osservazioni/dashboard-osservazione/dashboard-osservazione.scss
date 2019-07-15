@@ -1,11 +1,6 @@
-ion-input {
-    input {
-       text-align: right;
-    }
-}
-ion-textarea {
+dashboard-osservazione {
     textarea {
-       text-align: right;
-       height: 1.25em;
+        min-height: 10em !important;
+        
     }
 }

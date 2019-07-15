@@ -1,9 +1,3 @@
-<!--
-  Generated template for the DashboardProcedimentoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
     <ion-navbar hideBackButton>
         <ion-buttons left>
@@ -18,22 +12,19 @@
         </ion-buttons>
         <ion-title>Procedimento</ion-title>
     </ion-navbar>
-    <ion-segment [(ngModel)]="whichPage">
+    <ion-segment [(ngModel)]="whichPage" (ionChange)="onSegmentChange()">
         <ion-segment-button value="Procedimento" checked (ionSelect)="segmentProcedimentoClicked($event)">
             <ion-icon name="logo-buffer"></ion-icon>
         </ion-segment-button>
         <ion-segment-button value="Personalizzazioni" (ionSelect)="segmentPersonalizzazioniClicked($event)">
-            <ion-icon name="hammer"></ion-icon>
-            <ion-label>Personalizzazioni</ion-label>
+            <ion-icon name="cog"></ion-icon>
         </ion-segment-button>
         <ion-segment-button value="Fasi" (ionSelect)="segmentFasiClicked($event)">
-            <ion-icon name="locate"></ion-icon>
-            <ion-label>Fasi</ion-label>
+            <ion-icon name="list-box"></ion-icon>
         </ion-segment-button>
     </ion-segment>
 </ion-header>
 <ion-content>
-
     <div [ngSwitch]="whichPage">
         <ion-list *ngSwitchCase="'Procedimento'">
             <div *ngIf="selectedProcedimento">
@@ -324,46 +315,49 @@
                     </ion-row>
                 </ion-grid>
             </ion-item>
-            
-            <ion-item *ngFor="let f of fasi; let i=index" text-wrap>
-                <ion-grid no-padding>
-                    <ion-row>
-                        <ion-col >
-                            <p>{{f.tab_fase_procedimento_desc}}</p>
-                        </ion-col>
-                        <ion-col text-right>
-                            <progress-bar [progress]="f.perc_avanzamento"></progress-bar>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-                <!--<ion-row>
-                    <span ion-text>
-                        <p>
-                         
-                        <ion-icon padding-left *ngIf="f.step_avanzamento.length>0" [name]="selectedFase == i ? 'arrow-down' : 'arrow-forward'" float-right (click)="espendiFase($event, f, i)"></ion-icon>
-                        </p>
-                    </span>
-                    <ion-list [hidden]="selectedFase != i">
-                        <ion-item no-border *ngFor="let s_a of f.step_avanzamento">
-                            <ion-row>
-                                {{s_a.tab_fase_procedimento_step.tab_fase_procedimento_step_desc}}
-                                {{s_a.ps_fine}}
-                                {{s_a.tab_fase_procedimento_step.tab_fase_procedimento_step_peso}}
+            <div *ngFor="let f of fasi; let i=index">
+                <ion-item text-wrap>
+                    <ion-grid no-padding>
+                        <ion-row align-items-center>
+                            <ion-col col-6>
+                                <p>{{f.tab_fase_procedimento_desc}}</p>
+                            </ion-col>
+                            <ion-col col-5>
+                                <progress-bar [progress]="f.perc_avanzamento"></progress-bar>
+                            </ion-col>
+                            <ion-col *ngIf="f.step_avanzamento.length>0" col-1>
+                                <ion-icon padding-left [name]="selectedFase == i ? 'arrow-up' : 'arrow-down'" float-right (click)="espendiFase($event, f, i)"></ion-icon>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+                <div [hidden]="selectedFase != i">
+                    <ion-item *ngFor="let s_a of f.step_avanzamento" text-wrap>
+                        <ion-grid no-padding>
+                            <ion-row align-items-center>
+                                <ion-col col-6>
+                                    <p >{{s_a.tab_fase_procedimento_step.tab_fase_procedimento_step_desc}} - <small>{{s_a.ps_fine}}</small></p>
+                                </ion-col>
+                                <ion-col col-6>
+                                    <progress-bar class="small" [progress]="s_a.tab_fase_procedimento_step.tab_fase_procedimento_step_peso"></progress-bar>
+                                    <!--<ion-badge>{{s_a.tab_fase_procedimento_step.tab_fase_procedimento_step_peso}}</ion-badge>-->
+                                </ion-col>
                             </ion-row>
-                        </ion-item>
-                    </ion-list>
-                </ion-row>-->
-            </ion-item>
+                        </ion-grid>
+                    </ion-item>
+                </div>
+            </div>
         </ion-list>
     </div>
 </ion-content>
-<div [ngSwitch]="whichPage">
-    <ion-footer *ngSwitchCase="'Procedimento'">
-        <ion-toolbar>
-            <button  ion-button small item-end icon-start block *ngIf="selectedProcedimento.stato_prescrizioni" (click)="goToComunicazioni()">
-                <ion-icon name="mail" ios="ios-add-circle-outline"></ion-icon>Comunicazioni
-                <ion-badge item-end color="">{{selectedProcedimento.stato_prescrizioni.comunicazioni}}</ion-badge>
-            </button>
-        </ion-toolbar>
-    </ion-footer>
-</div>
+<ion-footer [ngSwitch]="whichPage">
+    <ion-toolbar *ngSwitchCase="'Procedimento'">
+        <ion-grid  *ngIf="selectedProcedimento.stato_prescrizioni" >
+            <ion-row text-center>
+                <ion-col  (click)="goToComunicazioni()">
+                    <ion-icon name="mail" style="font-size: 2em;"></ion-icon><br>Comunicazioni <ion-badge item-end color="">{{selectedProcedimento.stato_prescrizioni.comunicazioni}}</ion-badge>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

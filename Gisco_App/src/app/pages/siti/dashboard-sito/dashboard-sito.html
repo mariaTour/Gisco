@@ -123,6 +123,11 @@
             <ion-item color="primary-lighter" class="ion-section-title">
                 <ion-label>Catastale</ion-label>
             </ion-item>
+            <div *ngIf="catastale.length === 0">
+                <ion-item>
+                    <p>Nessun elemento catastale</p>
+                </ion-item>
+            </div>
             <div *ngFor="let c of catastale">
                 <ion-item text-wrap>
                     <ion-grid no-padding>
@@ -180,6 +185,11 @@
             <ion-item color="primary-lighter" class="ion-section-title">
                 <ion-label>Procedimenti</ion-label>
             </ion-item>
+            <div *ngIf="procedimenti.length === 0">
+                <ion-item>
+                    <p>Nessuna procedimento</p>
+                </ion-item>
+            </div>
             <div *ngFor="let procedimento of procedimenti">
                 <ion-list-header text-wrap>
                     <h3>{{procedimento.pro_titolo}}</h3>
@@ -252,9 +262,7 @@
             <ion-item color="primary-lighter" class="ion-section-title">
                 <ion-label>Mappa</ion-label>
             </ion-item>
-            <ion-item text-wrap>
-                <map-component [mapModel]="mapModel" *ngIf="showMap" (onMarkerClicked)="markerClicked($event)"></map-component>
-            </ion-item>
+            <map-component [mapModel]="mapModel" *ngIf="showMap" (onMarkerClicked)="markerClicked($event)"></map-component>
         </ion-list>
         <ion-list *ngSwitchCase="'Immagini'">
             <ion-item color="primary-lighter" class="ion-section-title">

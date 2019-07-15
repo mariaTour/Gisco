@@ -102,7 +102,7 @@
         height: 4rem;
         line-height: 5rem;
         border-top: 0;
-        border-bottom: 0;
+        //border-bottom: 0;
         &:first-of-type {
             border-radius: 0;
             border-left: 0;
@@ -113,9 +113,15 @@
         }
     }
 
+    textarea, input:not(.searchbar-input){
+        background-color: rgba(0,0,0,.02) !important;
+        padding: 4px;
+        font-size: 14px;
+    }
 
 }
 
 .anteprima_mess {
+    padding-top: .5em;
     font-size: .75em;
 }
